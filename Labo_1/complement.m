@@ -114,13 +114,50 @@ else
                         end
                     end
                     nateline=1;
-                    column=column+1         
+                    column=column+1;
                 end
                 if (mostunate!=0 && mostbinate==0)
                     x=mostunate
                 else
                     x=mostbinate
                 end
+                
+                i=1;
+                cofacP=cubin;
+                cofacN=cubin;
+                while (i<=size(cofacN,1))
+                    if cubin(i,x)==2
+                        cofacN(i,x)=3;
+                    elseif cubin(i,x)==1
+                        if cubin(i+1,x)==2
+                            cofacN(i+1,x)=3;
+                        elseif cubin(i+1,x)==1
+                            cofacN(i+1,:)=[];
+                        end
+                        cofacN(i,:)=[];
+                        
+                    end
+                    i=i+1;
+                end
+                N=cofacN
+                i=1;
+                while (i<=size(cofacP,1))
+                
+                    if cofacP(i,x)==2
+                        if cofacP(i+1,x)==2
+                            cofacP(i+1,:)=[];
+                        elseif cofacP(i+1,x)==1
+                            cofacP(i+1,x)=3;
+                        end
+                        cofacP(i,:)=[];
+                    elseif cofacP(i,x)==1
+                        cofacP(i,x)=3;
+                    end
+                    i=i+1;
+                    
+                end
+                P=cofacP        
+                
                 
           end             
               
